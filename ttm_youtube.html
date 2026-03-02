@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TTM 인사이트 살롱 · 경제 유튜브 추천</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-pale: #F5E6B8;
+    --dark: #1A1A2E;
+    --dark-card: #16213E;
+    --cream: #FAF6EE;
+    --white: #FFFFFF;
+    --text-main: #2C2C2C;
+    --text-sub: #6B6B6B;
+    --border: #EDE8DC;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--cream);
+    padding: 40px 20px 60px;
+  }
+
+  .page-wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* ── 헤더 ── */
+  .header {
+    background: var(--dark);
+    border-radius: 20px 20px 0 0;
+    padding: 44px 40px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%);
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .tag {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+  .header-title {
+    font-family: 'Noto Serif KR', serif;
+    color: #fff;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+  .header-title span { color: var(--gold-light); }
+  .header-sub {
+    color: rgba(255,255,255,0.45);
+    font-size: 12.5px;
+  }
+  .header-icon {
+    position: absolute;
+    right: 40px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 54px;
+    opacity: 0.12;
+  }
+
+  /* ── 인트로 ── */
+  .intro {
+    background: var(--white);
+    padding: 24px 40px;
+    border-left: 4px solid var(--gold);
+    font-size: 13.5px;
+    color: var(--text-sub);
+    line-height: 1.8;
+  }
+  .intro strong { color: var(--text-main); font-weight: 600; }
+
+  /* ── 섹션 공통 ── */
+  .section {
+    background: var(--white);
+    padding: 32px 40px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--gold-pale);
+  }
+
+  /* ── 메인 추천 카드 ── */
+  .main-card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1.5px solid var(--border);
+    margin-bottom: 20px;
+    animation: fadeUp 0.5s ease both;
+  }
+  .main-card:nth-child(2) { animation-delay: 0.1s; }
+  .main-card:nth-child(3) { animation-delay: 0.2s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .card-header {
+    background: var(--dark);
+    padding: 22px 28px 18px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .card-type {
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-type.daily { color: var(--gold-light); }
+  .card-type.sub   { color: #A8C8E8; }
+
+  .type-badge {
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .type-badge.daily {
+    background: rgba(201,168,76,0.2);
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold-light);
+  }
+  .type-badge.sub {
+    background: rgba(168,200,232,0.15);
+    border: 1px solid rgba(168,200,232,0.3);
+    color: #A8C8E8;
+  }
+
+  .card-name {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .card-name span { color: var(--gold-light); }
+
+  .card-source {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .card-body {
+    padding: 22px 28px 26px;
+    background: var(--white);
+  }
+
+  .reason-list {
+    list-style: none;
+    margin-bottom: 18px;
+  }
+  .reason-list li {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--border);
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-sub);
+  }
+  .reason-list li:last-child { border-bottom: none; }
+
+  .reason-num {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--gold-pale);
+    border: 1px solid var(--gold-light);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+
+  .reason-list li strong {
+    color: var(--text-main);
+    font-weight: 600;
+  }
+
+  .usage-box {
+    background: #FAFAF7;
+    border-left: 2.5px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    font-size: 12.5px;
+    color: var(--text-sub);
+    line-height: 1.7;
+  }
+  .usage-box strong {
+    color: var(--gold);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 3px;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── 조합 효과 박스 ── */
+  .combo-section {
+    background: var(--dark);
+    padding: 32px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .combo-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .combo-label {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+  .combo-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .combo-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .combo-time {
+    flex-shrink: 0;
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    width: 70px;
+    text-align: right;
+  }
+
+  .combo-item {
+    flex: 1;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 10px;
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .combo-item-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gold-light);
+  }
+
+  .combo-item-desc {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .combo-arrow {
+    text-align: center;
+    color: rgba(201,168,76,0.3);
+    font-size: 18px;
+    padding-left: 82px;
+  }
+
+  .combo-result {
+    background: rgba(201,168,76,0.08);
+    border: 1.5px solid rgba(201,168,76,0.3);
+    border-radius: 12px;
+    padding: 16px 20px;
+    text-align: center;
+  }
+  .combo-result-label {
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .combo-result-text {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 14px;
+    color: #fff;
+    line-height: 1.6;
+  }
+  .combo-result-text em {
+    font-style: normal;
+    color: var(--gold-light);
+  }
+
+  /* ── 푸터 ── */
+  .footer-box {
+    background: linear-gradient(135deg, #FDF8EE 0%, #FFF9F0 100%);
+    border: 1.5px solid var(--gold-pale);
+    border-top: none;
+    padding: 24px 40px;
+    border-radius: 0 0 20px 20px;
+    font-size: 13px;
+    color: var(--text-sub);
+    line-height: 1.8;
+    text-align: center;
+  }
+  .footer-box strong { color: var(--text-main); }
+
+  .footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 11.5px;
+    color: #B0A898;
+  }
+
+  @media (max-width: 500px) {
+    .header, .intro, .section, .combo-section, .footer-box {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .header-title { font-size: 21px; }
+    .header-icon { display: none; }
+    .card-header, .card-body { padding-left: 20px; padding-right: 20px; }
+    .combo-time { width: 50px; font-size: 10px; }
+    .combo-item-desc { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- 헤더 -->
+  <div class="header">
+    <div class="tag">TTM INSIGHT SALON · 노하우 1위 실천편</div>
+    <div class="header-title">
+      지속적인 금융지식 습득을 위한<br>
+      <span>경제 미디어 추천</span>
+    </div>
+    <div class="header-sub">부자들의 자산관리 노하우 1위 · 15.0%</div>
+    <div class="header-icon">📺</div>
+  </div>
+
+  <!-- 인트로 -->
+  <div class="intro">
+    부자들 인터뷰에서 공통으로 나온 말이 있습니다. <strong>"매일 아침 경제지 2~3시간, 20년째 해오고 있어요."</strong> 특별한 비법이 아니라 매일의 습관이 결국 안목을 만듭니다. TTM 멤버들을 위해 <strong>매일 루틴 1개 + 보조 채널 1개</strong>를 선정했습니다.
+  </div>
+
+  <!-- 매일 루틴 -->
+  <div class="section">
+    <div class="section-label">✦ &nbsp;매일 루틴 추천</div>
+
+    <div class="main-card">
+      <div class="card-header">
+        <div class="card-type daily">
+          <span class="type-badge daily">🌅 DAILY ROUTINE</span>
+        </div>
+        <div class="card-name">임현우의 <span>모닝루틴</span></div>
+        <div class="card-source">한경 코리아마켓 · 유튜브 · 평일 오전 8시 생방송</div>
+      </div>
+      <div class="card-body">
+        <ul class="reason-list">
+          <li>
+            <span class="reason-num">1</span>
+            <span><strong>시간 효율</strong> — 15~20분 분량으로 그날 한국경제신문 핵심 기사를 압축 전달. 부자들이 말한 "매일 아침 경제지 읽기" 습관을 가장 쉽게 실천할 수 있는 방법</span>
+          </li>
+          <li>
+            <span class="reason-num">2</span>
+            <span><strong>신뢰성</strong> — 한국경제신문이라는 검증된 매체 기반. 속보성 유튜브보다 정제된 정보 제공</span>
+          </li>
+          <li>
+            <span class="reason-num">3</span>
+            <span><strong>TTM 맞춤</strong> — IT 임원 출신답게 데이터 기반의 차분하고 논리적인 진행 스타일이 잘 맞음. 매일 4만여 명이 시청하는 검증된 채널</span>
+          </li>
+        </ul>
+        <div class="usage-box">
+          <strong>💡 활용법</strong>
+          아침 식사 또는 출근 준비 시간에 라디오처럼 틀어두기. 생방송을 놓쳐도 다시보기로 언제든 시청 가능
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 보조 채널 -->
+  <div class="section">
+    <div class="section-label">✦ &nbsp;보조 정보 취득 추천</div>
+
+    <div class="main-card">
+      <div class="card-header">
+        <div class="card-type sub">
+          <span class="type-badge sub">📚 SUPPLEMENT</span>
+        </div>
+        <div class="card-name">박곰희 <span>TV</span></div>
+        <div class="card-source">유튜브 · 구독자 100만+ · 영상 대부분 10분 내외</div>
+      </div>
+      <div class="card-body">
+        <ul class="reason-list">
+          <li>
+            <span class="reason-num">1</span>
+            <span><strong>연령대 최적화</strong> — 연금(IRP·퇴직연금·국민연금), ETF, ISA 절세 등 60대 전후 자산관리에 가장 실용적인 주제 집중. TTM 멤버들의 현재 상황과 가장 잘 맞음</span>
+          </li>
+          <li>
+            <span class="reason-num">2</span>
+            <span><strong>셀프 자산관리 철학</strong> — "내 돈은 내 손으로" 슬로건. 대우증권 PB 출신 운영자가 소액·일반 투자자를 위해 만든 채널로, 보고서가 말한 셀프 자산관리 트렌드와 정확히 일치</span>
+          </li>
+          <li>
+            <span class="reason-num">3</span>
+            <span><strong>부담 없는 분량</strong> — 대부분 10분 내외. 관심 주제가 생길 때 골라보기 좋아 꾸준히 이어가기 쉬움</span>
+          </li>
+        </ul>
+        <div class="usage-box">
+          <strong>💡 활용법</strong>
+          주 1~2회 관심 주제 영상 선택해서 시청. 연금·ETF·절세 키워드로 검색하면 실전에 바로 쓸 수 있는 콘텐츠 다수
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 조합 효과 -->
+  <div class="combo-section">
+    <div class="combo-label">✦ &nbsp;두 채널의 조합 효과</div>
+
+    <div class="combo-flow">
+      <div class="combo-row">
+        <div class="combo-time">매일 아침</div>
+        <div class="combo-item">
+          <span class="combo-item-name">모닝루틴</span>
+          <span class="combo-item-desc">거시 흐름 파악</span>
+        </div>
+      </div>
+      <div class="combo-arrow">+</div>
+      <div class="combo-row">
+        <div class="combo-time">주 1~2회</div>
+        <div class="combo-item">
+          <span class="combo-item-name">박곰희 TV</span>
+          <span class="combo-item-desc">실전 지식 보완</span>
+        </div>
+      </div>
+      <div class="combo-arrow">↓</div>
+    </div>
+
+    <div class="combo-result">
+      <div class="combo-result-label">✦ &nbsp;달성 목표</div>
+      <div class="combo-result-text">
+        부자들 노하우 1위<br>
+        <em>"지속적인 금융지식 습득"</em> 실천 완성
+      </div>
+    </div>
+  </div>
+
+  <!-- 푸터 메시지 -->
+  <div class="footer-box">
+    <strong>"매일 아침 20분, 1년이면 120시간"</strong><br>
+    한 채널을 꾸준히 매일 듣는 것이<br>다섯 개를 가끔 보는 것보다 훨씬 효과적입니다.
+  </div>
+
+</div>
+
+<div class="footer">
+  2025 한국 부자 보고서 · KB금융지주 경영연구소 &nbsp;|&nbsp; TTM 인사이트 살롱
+</div>
+
+</body>
+</html>

@@ -44,7 +44,7 @@ inset: 0;
 width: 100%;
 height: 100%;
 object-fit: cover;
-object-position: center;
+object-position: right center;
 opacity: 0;
 animation: imgFade 1.2s ease 0.3s forwards;
 }
@@ -283,7 +283,9 @@ letter-spacing: 0.5px;
 
 /* ── 반응형 ── */
 @media (max-width: 560px) {
-.hero-content { padding: 0 24px 44px; }
+.hero { height: 35vh; min-height: 260px; }
+.hero-img { object-position: right center; } 
+.hero-content { padding: 0 24px 32px; }
 .cards-section { padding: 48px 20px; }
 .cards-wrapper { grid-template-columns: 1fr; }
 .card-top { padding: 22px 22px 18px; }
@@ -345,6 +347,7 @@ letter-spacing: 0.5px;
 </body>
 
 </html>
+
 
 
 

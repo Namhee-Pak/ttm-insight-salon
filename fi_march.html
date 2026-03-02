@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TTM 인사이트 살롱</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-pale: #F5E6B8;
+    --dark: #1A1A2E;
+    --dark-card: #16213E;
+    --dark-surface: #0F3460;
+    --cream: #FAF6EE;
+    --text-main: #2C2C2C;
+    --text-sub: #6B6B6B;
+  }
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+font-family: ‘Noto Sans KR’, sans-serif;
+background: var(–cream);
+min-height: 100vh;
+padding: 40px 20px 60px;
+}
+
+.page-wrapper {
+max-width: 720px;
+margin: 0 auto;
+}
+
+/* ── 헤더 ── */
+.header {
+background: var(–dark);
+border-radius: 20px 20px 0 0;
+padding: 44px 40px 36px;
+position: relative;
+overflow: hidden;
+}
+
+.header::before {
+content: ‘’;
+position: absolute;
+top: -60px; right: -60px;
+width: 220px; height: 220px;
+border-radius: 50%;
+background: radial-gradient(circle, rgba(201,168,76,0.18) 0%, transparent 70%);
+}
+
+.header::after {
+content: ‘’;
+position: absolute;
+bottom: 0; left: 0; right: 0;
+height: 2px;
+background: linear-gradient(90deg, transparent, var(–gold), transparent);
+}
+
+.tag {
+display: inline-block;
+border: 1px solid var(–gold);
+color: var(–gold);
+font-size: 11px;
+letter-spacing: 2.5px;
+padding: 5px 14px;
+border-radius: 20px;
+margin-bottom: 18px;
+font-weight: 500;
+}
+
+.header-title {
+font-family: ‘Noto Serif KR’, serif;
+color: #fff;
+font-size: 26px;
+font-weight: 700;
+line-height: 1.4;
+margin-bottom: 10px;
+}
+
+.header-title span {
+color: var(–gold-light);
+}
+
+.header-sub {
+color: rgba(255,255,255,0.5);
+font-size: 12.5px;
+letter-spacing: 0.5px;
+}
+
+.diamond {
+position: absolute;
+right: 40px;
+top: 50%;
+transform: translateY(-50%);
+font-size: 52px;
+opacity: 0.15;
+}
+
+/* ── 인트로 박스 ── */
+.intro {
+background: #fff;
+padding: 24px 40px;
+border-left: 4px solid var(–gold);
+border-right: none;
+font-size: 13.5px;
+color: var(–text-sub);
+line-height: 1.8;
+}
+
+.intro strong {
+color: var(–text-main);
+font-weight: 600;
+}
+
+/* ── 노하우 리스트 ── */
+.list-section {
+background: #fff;
+padding: 10px 40px 32px;
+}
+
+.section-divider {
+display: flex;
+align-items: center;
+gap: 14px;
+padding: 24px 0 20px;
+}
+
+.section-divider span {
+font-size: 11px;
+letter-spacing: 2px;
+color: var(–gold);
+font-weight: 600;
+white-space: nowrap;
+}
+
+.section-divider::before,
+.section-divider::after {
+content: ‘’;
+flex: 1;
+height: 1px;
+background: linear-gradient(90deg, var(–gold-pale), transparent);
+}
+
+.section-divider::after {
+background: linear-gradient(270deg, var(–gold-pale), transparent);
+}
+
+.item {
+display: flex;
+gap: 18px;
+padding: 18px 0;
+border-bottom: 1px solid #F0EDE6;
+animation: fadeUp 0.5s ease both;
+}
+
+.item:last-child { border-bottom: none; }
+
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(10px); }
+to   { opacity: 1; transform: translateY(0); }
+}
+
+.item:nth-child(1) { animation-delay: 0.05s; }
+.item:nth-child(2) { animation-delay: 0.10s; }
+.item:nth-child(3) { animation-delay: 0.15s; }
+.item:nth-child(4) { animation-delay: 0.20s; }
+.item:nth-child(5) { animation-delay: 0.25s; }
+.item:nth-child(6) { animation-delay: 0.30s; }
+.item:nth-child(7) { animation-delay: 0.35s; }
+.item:nth-child(8) { animation-delay: 0.40s; }
+
+.rank-badge {
+flex-shrink: 0;
+width: 46px;
+height: 46px;
+border-radius: 12px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+font-size: 18px;
+line-height: 1;
+}
+
+.rank-badge.medal {
+background: linear-gradient(135deg, #FFF3CD, #F5E6B8);
+border: 1px solid var(–gold-light);
+}
+
+.rank-badge.normal {
+background: #F5F5F0;
+border: 1px solid #E8E4DC;
+}
+
+.rank-num {
+font-size: 9px;
+color: var(–text-sub);
+font-weight: 600;
+letter-spacing: 0.5px;
+margin-top: 1px;
+}
+
+.item-body { flex: 1; }
+
+.item-title {
+font-family: ‘Noto Serif KR’, serif;
+font-size: 15px;
+font-weight: 700;
+color: var(–text-main);
+margin-bottom: 6px;
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+.pct {
+font-family: ‘Noto Sans KR’, sans-serif;
+font-size: 11px;
+font-weight: 500;
+color: var(–gold);
+background: #FDF8EE;
+border: 1px solid var(–gold-pale);
+padding: 2px 8px;
+border-radius: 10px;
+}
+
+.item-desc {
+font-size: 13px;
+color: var(–text-sub);
+line-height: 1.75;
+}
+
+.quote {
+display: block;
+margin-top: 7px;
+padding: 9px 14px;
+background: #FAFAF7;
+border-left: 2.5px solid var(–gold);
+font-size: 12.5px;
+color: #555;
+line-height: 1.7;
+font-style: italic;
+border-radius: 0 6px 6px 0;
+}
+
+.quote cite {
+display: block;
+font-style: normal;
+font-size: 11px;
+color: var(–gold);
+margin-top: 4px;
+font-weight: 500;
+}
+
+/* ── 요약 박스 ── */
+.summary {
+background: var(–dark);
+padding: 32px 40px;
+position: relative;
+overflow: hidden;
+}
+
+.summary::before {
+content: ‘’;
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 2px;
+background: linear-gradient(90deg, transparent, var(–gold), transparent);
+}
+
+.summary-label {
+font-size: 10px;
+letter-spacing: 2.5px;
+color: var(–gold);
+font-weight: 600;
+margin-bottom: 16px;
+}
+
+.summary-flow {
+display: flex;
+flex-wrap: wrap;
+gap: 6px;
+align-items: center;
+margin-bottom: 0;
+}
+
+.flow-item {
+background: rgba(201,168,76,0.12);
+border: 1px solid rgba(201,168,76,0.3);
+color: var(–gold-light);
+font-size: 12.5px;
+padding: 6px 14px;
+border-radius: 20px;
+font-weight: 500;
+}
+
+.flow-arrow {
+color: rgba(201,168,76,0.4);
+font-size: 14px;
+}
+
+/* ── 질문 박스 ── */
+.question-box {
+background: linear-gradient(135deg, #FDF8EE 0%, #FFF9F0 100%);
+border: 1.5px solid var(–gold-pale);
+border-top: none;
+padding: 28px 40px;
+border-radius: 0 0 20px 20px;
+}
+
+.q-label {
+display: flex;
+align-items: center;
+gap: 8px;
+font-size: 11px;
+letter-spacing: 2px;
+color: var(–gold);
+font-weight: 700;
+margin-bottom: 12px;
+}
+
+.q-label::after {
+content: ‘’;
+flex: 1;
+height: 1px;
+background: var(–gold-pale);
+}
+
+.q-text {
+font-family: ‘Noto Serif KR’, serif;
+font-size: 15px;
+color: var(–text-main);
+line-height: 1.7;
+font-weight: 600;
+}
+
+/* ── 푸터 ── */
+.footer {
+text-align: center;
+margin-top: 20px;
+font-size: 11.5px;
+color: #B0A898;
+letter-spacing: 0.3px;
+}
+
+/* ── 반응형 ── */
+@media (max-width: 500px) {
+.header, .intro, .list-section, .summary, .question-box {
+padding-left: 24px;
+padding-right: 24px;
+}
+.header-title { font-size: 21px; }
+.diamond { display: none; }
+}
+</style>
+
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- 헤더 -->
+
+  <div class="header">
+    <div class="tag">TTM INSIGHT SALON · 자산관리 편</div>
+    <div class="header-title">
+      부자들이 직접 전하는<br>
+      <span>자산관리 성공 노하우 8가지</span>
+    </div>
+    <div class="header-sub">출처: 2025 한국 부자 보고서 · KB금융지주 경영연구소</div>
+    <div class="diamond">💎</div>
+  </div>
+
+  <!-- 인트로 -->
+
+  <div class="intro">
+    최근 발표된 <strong>'2025 한국 부자 보고서'</strong>에서 금융자산 10억 원 이상 보유자 <strong>47만 6천 명</strong>의 데이터와 초고자산가들의 생생한 목소리를 담아 분석했습니다. 수십 년의 투자 경험에서 얻은 가장 중요한 교훈을 함께 나눕니다.
+  </div>
+
+  <!-- 노하우 리스트 -->
+
+  <div class="list-section">
+
+```
+<div class="section-divider"><span>TOP 3 · MEDAL</span></div>
+
+<!-- 1위 -->
+<div class="item">
+  <div class="rank-badge medal">🥇<div class="rank-num">1위</div></div>
+  <div class="item-body">
+    <div class="item-title">지속적인 금융지식 습득 <span class="pct">15.0%</span></div>
+    <div class="item-desc">자산이 많을수록 이 항목을 압도적 1위로 꼽았습니다. 특별한 비법이 아니라 <strong>매일의 습관</strong>이 결국 안목을 만듭니다.
+      <span class="quote">"매일 아침 6시에 일어나 경제지를 2~3시간 보고, 해외 경제를 1시간 찾아봐요. 우물 안 개구리가 되면 안 되겠다는 생각에 20년째 해오고 있어요."<cite>— 60대 남성, 금융자산 70억 원</cite></span>
+    </div>
+  </div>
+</div>
+
+<!-- 2위 -->
+<div class="item">
+  <div class="rank-badge medal">🥈<div class="rank-num">2위</div></div>
+  <div class="item-body">
+    <div class="item-title">위험관리를 위한 분산 투자 <span class="pct">14.5%</span></div>
+    <div class="item-desc">실제 부자들의 포트폴리오: 부동산 55% · 금융 37% · 기타(금·보석 등) 8%
+      <span class="quote">"달걀을 나눠 담아야지, 모두 한 바구니에 담으면 안 돼요. 한 군데 물리게 되면 어떻게 할 수가 없어요."<cite>— 60대 남성, 금융자산 70억 원</cite></span>
+    </div>
+  </div>
+</div>
+
+<!-- 3위 -->
+<div class="item">
+  <div class="rank-badge medal">🥉<div class="rank-num">3위</div></div>
+  <div class="item-body">
+    <div class="item-title">시장을 보는 안목과 통찰력 <span class="pct">13.5%</span></div>
+    <div class="item-desc">호재 발견 시 관련 기업의 재무제표 10년 치를 확인하는 철저함. 정보를 소비하는 데서 그치지 않고 <strong>직접 분석하는 것</strong>이 핵심입니다.
+      <span class="quote">"경제의 흐름과 트렌드를 잘 봐야 해요. 공부를 열심히 하면 공격적으로 투자해봐도 돼요."<cite>— 60대 여성, 금융자산 20억 원</cite></span>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"><span>4위 — 8위</span></div>
+
+<!-- 4위 -->
+<div class="item">
+  <div class="rank-badge normal">📈<div class="rank-num">4위</div></div>
+  <div class="item-body">
+    <div class="item-title">꾸준한 저축과 투자 습관 <span class="pct">12.8%</span></div>
+    <div class="item-desc">복리의 마법 — 1억→2억보다 5억→10억이 훨씬 빠릅니다. 시작이 늦었다고 느낄수록 <strong>지금 당장 시작하는 것</strong>이 답입니다.</div>
+  </div>
+</div>
+
+<!-- 5위 -->
+<div class="item">
+  <div class="rank-badge normal">🎯<div class="rank-num">5위</div></div>
+  <div class="item-body">
+    <div class="item-title">명확한 투자 원칙과 기준 <span class="pct">11.8%</span></div>
+    <div class="item-desc">공짜는 없다! 내가 잘 아는 것에만 집중하는 절제력.
+      <span class="quote">"수익을 1~10으로 나눈다면 9~10은 절대 선택 말고 중간인 4~5를 선택하자. 세상에 공짜는 부모님 빼고는 없어요."<cite>— 60대 남성, 금융자산 70억 원</cite></span>
+    </div>
+  </div>
+</div>
+
+<!-- 6위 -->
+<div class="item">
+  <div class="rank-badge normal">⚖️<div class="rank-num">6위</div></div>
+  <div class="item-body">
+    <div class="item-title">변동성 인식 및 대응 능력 <span class="pct">11.3%</span></div>
+    <div class="item-desc">수익 20%, 손실 10% 등 <strong>자신만의 익절·손절 기준</strong>을 미리 정해두는 것이 핵심입니다. 변동성을 피하는 것이 아니라 기준으로 다스립니다.</div>
+  </div>
+</div>
+
+<!-- 7위 -->
+<div class="item">
+  <div class="rank-badge normal">🔭<div class="rank-num">7위</div></div>
+  <div class="item-body">
+    <div class="item-title">위기를 기회로 삼는 안목 <span class="pct">11.0%</span></div>
+    <div class="item-desc">팬데믹·금융위기 때 오히려 자산을 늘린 이들이 지금의 초고자산가(금융자산 300억 원 이상)가 되었습니다. 하락장은 위협이 아니라 <strong>매수의 기회</strong>입니다.</div>
+  </div>
+</div>
+
+<!-- 8위 -->
+<div class="item">
+  <div class="rank-badge normal">🧭<div class="rank-num">8위</div></div>
+  <div class="item-body">
+    <div class="item-title">일관된 투자 태도 유지 <span class="pct">10.3%</span></div>
+    <div class="item-desc">총자산 100억 원 이상의 <strong>최상위 부자들이 가장 중요하게 꼽은</strong> 항목. 시장이 흔들릴 때 원칙을 지키는 힘이 결정적 차이를 만듭니다.</div>
+  </div>
+</div>
+```
+
+  </div>
+
+  <!-- 한 줄 요약 -->
+
+  <div class="summary">
+    <div class="summary-label">✦ &nbsp;핵심 요약</div>
+    <div class="summary-flow">
+      <span class="flow-item">알고</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-item">나눠 담고</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-item">원칙을 세워</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-item">흔들리지 않고</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-item">위기를 기회로</span>
+    </div>
+  </div>
+
+  <!-- 질문 박스 -->
+
+  <div class="question-box">
+    <div class="q-label">💬 &nbsp;오늘의 질문</div>
+    <div class="q-text">이 8가지 중 여러분이 가장 잘하고 있는 것과,<br>올해 꼭 보완하고 싶은 한 가지는 무엇인가요?</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  2025 한국 부자 보고서 · KB금융지주 경영연구소 &nbsp;|&nbsp; TTM 인사이트 살롱
+</div>
+
+</body>
+</html>

@@ -281,6 +281,38 @@ letter-spacing: 0.5px;
 
 .footer-text span { color: var(--gold); }
 
+/* ── 월별 섹션 ── */
+.month-section {
+  max-width: 760px;
+  margin: 0 auto 40px;
+}
+
+.month-label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--text-sub);
+  font-weight: 700;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.month-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #EDE8DC;
+}
+.month-badge {
+  background: var(--dark);
+  color: var(--gold);
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(201,168,76,0.3);
+  letter-spacing: 1.5px;
+}
+
 /* ── 반응형 ── */
 @media (max-width: 560px) {
 .hero { height: 35vh; min-height: 260px; }
@@ -394,6 +426,7 @@ letter-spacing: 0.5px;
  
 </body>
 </html>
+
 
 
 
